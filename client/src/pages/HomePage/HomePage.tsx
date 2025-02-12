@@ -1,4 +1,6 @@
 import "./HomePage.css";
+import { Link } from "react-router-dom";
+
 function HomePage() {
   return (
     <div className="home-container">
@@ -14,9 +16,11 @@ function HomePage() {
           correspond. Vous pourrez ajouter vos parfums afin de le faire
           découvrir aux autres
         </p>
-        <button type="button" className="home-button">
-          Découvrir nos parfums
-        </button>
+        <Link to="/parfums">
+          <button type="button" className="home-button">
+            Découvrir nos parfums
+          </button>
+        </Link>
       </div>
     </div>
   );

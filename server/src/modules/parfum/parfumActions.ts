@@ -4,9 +4,9 @@ import parfumRepository from "./parfumRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const parfum = await parfumRepository.readAll();
+    const parfums = await parfumRepository.readAll();
 
-    res.json(parfum);
+    res.json(parfums);
   } catch (err) {
     next(err);
   }
@@ -15,13 +15,13 @@ const browse: RequestHandler = async (req, res, next) => {
 // Action GET for get just one parfum with dynamic id
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const parfumId = Number(req.params.id);
-    const parfum = await parfumRepository.read(parfumId);
+    const parfumsId = Number(req.params.id);
+    const parfums = await parfumRepository.read(parfumsId);
 
-    if (parfum === null) {
+    if (parfums === null) {
       res.sendStatus(404);
     } else {
-      res.send(parfum);
+      res.send(parfums);
     }
   } catch (err) {
     next(err);
@@ -30,27 +30,27 @@ const read: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const addParfum = await parfumRepository.create(req.body);
+    const addParfums = await parfumRepository.create(req.body);
 
-    if (addParfum) {
+    if (addParfums) {
       res
         .status(201)
-        .send(`Le Parfum ${req.body.parfum.name} à été ajouter avec succés`);
+        .send(`Le Parfum ${req.body.name} à été ajouter avec succés`);
     } else {
       res
         .status(404)
         .send("Une erreur à été rencontrée, votre parfum n'a pas été ajouter");
     }
   } catch (err) {
-    console.error(err);
+    next(err);
   }
 };
 
-const deleteParfum: RequestHandler = async (req, res, next) => {
+const deleteParfums: RequestHandler = async (req, res, next) => {
   const id = Number(req.params.id);
   try {
-    const deleteRecipe = await parfumRepository.destroy(id);
-    if (deleteRecipe) {
+    const deleteResult = await parfumRepository.destroy(id);
+    if (deleteResult) {
       res.sendStatus(200);
     } else {
       res.sendStatus(400);
@@ -60,4 +60,4 @@ const deleteParfum: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, deleteParfum };
+export default { browse, read, add, deleteParfums };

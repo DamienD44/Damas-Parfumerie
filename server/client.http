@@ -1,0 +1,14 @@
+GET http://localhost:3310/api/damasparfum
+
+############
+### Ajouter un parfum
+POST http://localhost:3310/api/damasparfum/parfums/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Chanel No 5",
+  "marque": "Chanel",
+  "description": "Un parfum emblématique avec des notes florales et boisées.",
+  "image": "https://example.com/chanel-no5.jpg",
+  "user_id": 1
+}

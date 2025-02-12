@@ -1,32 +1,33 @@
 import databaseClient from "../../../database/client";
-import type { Rows, Result } from "../../../database/client";
+
+import type { Result, Rows } from "../../../database/client";
 import type { Parfum } from "./Parfum";
 
 class ParfumRepository {
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM parfum");
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM parfums");
 
     return rows;
   }
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT parfum.id, parfum.name, parfum.marque, parfum.description, parfum.image 
-       FROM parfum 
-       WHERE parfum.id = ?`,
+      `SELECT parfums.id, parfums.name, parfums.marque, parfums.description, parfums.image 
+       FROM parfums
+       WHERE parfums.id = ?`,
       [id],
     );
     return rows[0];
   }
 
-  async create(parfum: Parfum) {
+  async create(parfums: Parfum) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO parfum (name, marque, description, image, user_id) VALUES (?,?,?,?,?)",
+      "INSERT INTO parfums (name, marque, description, image, user_id) VALUES (?,?,?,?,?)",
       [
-        parfum.name,
-        parfum.marque,
-        parfum.description,
-        parfum.image,
-        parfum.user_id,
+        parfums.name,
+        parfums.marque,
+        parfums.description,
+        parfums.image,
+        parfums.user_id,
       ],
     );
 
@@ -34,22 +35,22 @@ class ParfumRepository {
   }
   async destroy(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "DELETE FROM recipe WHERE id = ?",
+      "DELETE FROM parfums WHERE id = ?",
       [id],
     );
     return rows;
   }
 
-  async update(parfum: Parfum) {
+  async update(parfums: Parfum) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE parfum SET name = ?, marque = ?, description = ?, image = ? user_id = ? WHERE id = ?",
+      "UPDATE parfums SET name = ?, marque = ?, description = ?, image = ?, user_id = ? WHERE id = ?",
       [
-        parfum.id,
-        parfum.name,
-        parfum.marque,
-        parfum.description,
-        parfum.image,
-        parfum.user_id,
+        parfums.name,
+        parfums.marque,
+        parfums.description,
+        parfums.image,
+        parfums.user_id,
+        parfums.id,
       ],
     );
 
