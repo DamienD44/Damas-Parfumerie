@@ -1,0 +1,12 @@
+.section-about {
+  background-color: rgb(54, 50, 50);
+  width: 100%;
+}
+
+.section-about p,
+h1 {
+  color: gold;
+  text-align: center;
+  width: 70%;
+  margin: 5% 15% 5% 15%;
+}

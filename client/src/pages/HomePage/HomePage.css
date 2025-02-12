@@ -1,0 +1,42 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(54, 50, 50);
+  padding: 1.5rem;
+}
+
+.home-content {
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 1rem;
+}
+
+.home-text {
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.home-button {
+  background-color: rgb(243, 208, 10);
+  color: black;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: medium;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.home-button:hover {
+  background-color: gold;
+}
