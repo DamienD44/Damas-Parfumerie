@@ -3,9 +3,16 @@
   width: 100%;
 }
 
-.section-about p,
+.section-about,
 h1 {
   color: gold;
+  text-align: center;
+  width: 70%;
+  margin: 5% 15% 5% 15%;
+}
+.section-about,
+p {
+  color: white;
   text-align: center;
   width: 70%;
   margin: 5% 15% 5% 15%;

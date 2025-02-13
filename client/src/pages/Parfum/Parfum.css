@@ -26,6 +26,7 @@ section button {
   height: 100%;
   width: 20%;
   margin: 1% 40%;
+  cursor: pointer;
 }
 @media (max-width: 425px) {
   section button {

@@ -1,7 +1,6 @@
+import type { Card } from "../../../../client/src/types/ParfumCard";
 import databaseClient from "../../../database/client";
-
 import type { Result, Rows } from "../../../database/client";
-import type { Parfum } from "./Parfum";
 
 class ParfumRepository {
   async readAll() {
@@ -19,7 +18,7 @@ class ParfumRepository {
     return rows[0];
   }
 
-  async create(parfums: Parfum) {
+  async create(parfums: Card) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO parfums (name, marque, description, image, user_id) VALUES (?,?,?,?,?)",
       [
@@ -41,8 +40,8 @@ class ParfumRepository {
     return rows;
   }
 
-  async update(parfums: Parfum) {
-    const [result] = await databaseClient.query<Result>(
+  async update(parfums: Card) {
+    const [row] = await databaseClient.query<Result>(
       "UPDATE parfums SET name = ?, marque = ?, description = ?, image = ?, user_id = ? WHERE id = ?",
       [
         parfums.name,
@@ -54,7 +53,7 @@ class ParfumRepository {
       ],
     );
 
-    return result.affectedRows;
+    return row.affectedRows;
   }
 }
 

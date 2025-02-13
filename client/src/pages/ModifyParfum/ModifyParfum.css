@@ -1,45 +1,3 @@
-.h2-create {
-  color: gold;
-}
-h4 {
-  color: gold;
-  font-size: 1.5em;
-}
-.modify-parfum {
-  list-style-type: none;
-  padding: 0;
-}
-
-.modify-parfum li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.create-img {
-  margin-right: 20px;
-}
-
-.create-img img {
-  max-width: 100px;
-  height: auto;
-}
-
-.create-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.create-info h3 {
-  font-size: 1.2rem;
-  margin: 0;
-  color: gold;
-}
-
-.create-info p {
-  margin: 5px 0;
-}
-
 #create {
   display: flex;
   justify-content: center;
@@ -76,11 +34,17 @@ input {
   transition: border-color 0.3s;
 }
 
-p {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: white;
+input:focus {
+  border-color: #007bff;
 }
+
 button {
-  width: 60%;
+  padding: 12px;
+  background-color: gold;
+
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

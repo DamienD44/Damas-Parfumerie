@@ -27,7 +27,7 @@ function ParfumList() {
           </p>
         </div>
 
-        <Link to="/creation">
+        <Link to="/create">
           <button type="button"> Ajouter votre parfum</button>
         </Link>
       </section>
@@ -39,6 +39,8 @@ function ParfumList() {
             marque={el.marque}
             description={el.description}
             image={el.image}
+            user_id={el.user_id}
+            id={el.id}
           />
         ))}
       </main>

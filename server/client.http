@@ -1,8 +1,8 @@
 GET http://localhost:3310/api/damasparfum
 
 ############
-### Ajouter un parfum
-POST http://localhost:3310/api/damasparfum/parfums/create HTTP/1.1
+
+POST http://localhost:3310/api/damasparfum HTTP/1.1
 Content-Type: application/json
 
 {
@@ -10,5 +10,22 @@ Content-Type: application/json
   "marque": "Chanel",
   "description": "Un parfum emblématique avec des notes florales et boisées.",
   "image": "https://example.com/chanel-no5.jpg",
-  "user_id": 1
+  "user_id": "1"
+  
+}
+
+###################
+  
+
+PUT http://localhost:3310/api/damasparfum/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  
+  "name": " Damas",
+  "marque": "Damas",
+  "description":"gqsrg",
+  "image":"https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw1fe784a0/images/hi-res/alternates/PID_alternate2/PID_alternate2_535/P53514_2.jpg?sw=240&sh=240&sm=fit",
+  "user_id":"1"
+  
 }

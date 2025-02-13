@@ -1,5 +1,4 @@
 import type { RequestHandler } from "express";
-
 import parfumRepository from "./parfumRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -60,4 +59,28 @@ const deleteParfums: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, deleteParfums };
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, marque, description, image, user_id } = req.body;
+
+    const editParfum = await parfumRepository.update({
+      name,
+      marque,
+      description,
+      image,
+      user_id,
+      id,
+    });
+
+    if (editParfum) {
+      res.sendStatus(204);
+    } else {
+      res.status(403).send("Une erreur s'est produite");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add, deleteParfums, edit };

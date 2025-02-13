@@ -10,7 +10,9 @@ import App from "./App";
 import About from "./pages/About/About";
 import CreateParfum from "./pages/CreateParfum/CreateParfum";
 import HomePage from "./pages/HomePage/HomePage";
+import ModifyParfum from "./pages/ModifyParfum/ModifyParfum";
 import ParfumList from "./pages/Parfum/Parfum";
+import ParfumDetail from "./pages/ParfumDetail/ParfumDetail";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -31,6 +33,13 @@ const router = createBrowserRouter([
   { path: "/about", element: <About /> },
   { path: "/parfums", element: <ParfumList /> },
   { path: "/create", element: <CreateParfum /> },
+  {
+    path: "detail/:id",
+    element: <ParfumDetail />,
+    loader: ({ params }) =>
+      fetch(`http://localhost:3310/api/damasparfum/parfums/${params.id}`),
+  },
+  { path: "/modify", element: <ModifyParfum /> },
 
   // Try adding a new route! For example, "/about" with an About component
 ]);

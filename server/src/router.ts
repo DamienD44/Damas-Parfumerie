@@ -19,12 +19,13 @@ router.post("/api/items", itemActions.add);
 import parfumActions from "./modules/parfum/parfumActions";
 
 router.get("/api/damasparfum", parfumActions.browse);
-router.get("/api/damasparfum/parfums/:id", parfumActions.read);
-router.post("/api/damasparfum/parfums/create", parfumActions.add);
+router.get("/api/damasparfum/:id", parfumActions.read);
+router.post("/api/damasparfum", parfumActions.add);
 router.delete(
   "/api/damasparfum/parfums/delete/:id",
   parfumActions.deleteParfums,
 );
+router.put("/api/damasparfum/:id", parfumActions.edit);
 
 /* ************************************************************************* */
 
