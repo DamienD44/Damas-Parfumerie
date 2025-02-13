@@ -11,7 +11,6 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
-// Action GET for get just one parfum with dynamic id
 const read: RequestHandler = async (req, res, next) => {
   try {
     const parfumsId = Number(req.params.id);
@@ -58,26 +57,28 @@ const deleteParfums: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
-const edit: RequestHandler = async (req, res, next) => {
+const edit: RequestHandler = async (req, res, next): Promise<void> => {
   try {
-    const { id } = req.params;
-    const { name, marque, description, image, user_id } = req.body;
+    if (!req.body || typeof req.body !== "object") {
+      res.status(400).send("Le corps de la requête est mal formaté.");
+    }
 
-    const editParfum = await parfumRepository.update({
-      name,
-      marque,
-      description,
-      image,
-      user_id,
-      id,
-    });
+    const { id } = req.params;
+    const parfum = { ...req.body };
+
+    if (Number.isNaN(Number(id))) {
+      res.status(400).send("ID invalide.");
+    }
+
+    parfum.id = Number(id);
+
+    const editParfum = await parfumRepository.update(parfum);
 
     if (editParfum) {
       res.sendStatus(204);
-    } else {
-      res.status(403).send("Une erreur s'est produite");
     }
+
+    res.status(403).send("Une erreur s'est produite");
   } catch (err) {
     next(err);
   }

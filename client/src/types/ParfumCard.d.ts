@@ -1,11 +1,9 @@
 export interface Card {
-  id?: string;
+  id?: number;
   name: string;
   marque: string;
   description: string;
   image: string;
-  user_id: string;
-}
-export interface Parfum extends Card {
   user_id: number;
 }
+export interface Parfum extends Card {}

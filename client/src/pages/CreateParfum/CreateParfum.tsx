@@ -4,27 +4,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Card } from "../../types/ParfumCard";
 
-interface Parfum {
-  id: number;
-  name: string;
-  marque: string;
-  description: string;
-  image: string;
-}
-
 function CreateParfum() {
   const [parfum, setParfum] = useState<Card>({
     name: "",
     marque: "",
     description: "",
     image: "",
-    user_id: "",
+    user_id: 1,
   });
   const [message, setMessage] = useState("");
-  const [parfums, setParfums] = useState<Parfum[]>([]);
+  const [parfums, setParfums] = useState<Card[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/damasparfum/")
+    fetch("http://localhost:3310/api/damasparfum")
       .then((res) => res.json())
       .then((data) => setParfums(data))
       .catch((err) =>
@@ -33,23 +25,24 @@ function CreateParfum() {
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setParfum({ ...parfum, [e.target.name]: e.target.value });
+    setParfum({
+      ...parfum,
+      [e.target.name]:
+        e.target.name === "user_id" ? Number(e.target.value) : e.target.value,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "http://localhost:3310/api/damasparfum/parfums/create",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(parfum),
+      const response = await fetch("http://localhost:3310/api/damasparfum", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(parfum),
+      });
 
       const result = await response.text();
 
@@ -60,11 +53,11 @@ function CreateParfum() {
           marque: "",
           description: "",
           image: "",
-          user_id: "",
+          user_id: 1,
         });
 
         const updatedParfums = await fetch(
-          "http://localhost:3310/api/damasparfum/parfums",
+          "http://localhost:3310/api/damasparfum",
         )
           .then((res) => res.json())
           .catch((err) =>
@@ -82,7 +75,7 @@ function CreateParfum() {
   const HandleDelete = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3310/api/damasparfum/parfums/delete/${id}`,
+        `http://localhost:3310/api/damasparfum/delete/${id}`,
         {
           method: "DELETE",
         },
@@ -113,10 +106,19 @@ function CreateParfum() {
                 <h3>{parfum.name}</h3>
                 <p>{parfum.marque}</p>
                 <p>{parfum.description}</p>
-                <button type="button" onClick={() => HandleDelete(parfum.id)}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (parfum.id !== undefined) {
+                      HandleDelete(parfum.id);
+                    } else {
+                      console.error("ID du parfum manquant");
+                    }
+                  }}
+                >
                   🗑 Supprimer
                 </button>
-                <Link to="/mofify">
+                <Link to="/modify">
                   <button className="create-modify-button" type="button">
                     ✏ Modifier
                   </button>
@@ -126,6 +128,7 @@ function CreateParfum() {
           ))}
         </ul>
       </section>
+      <h2 className="h2-create-parfum"> Créer votre parfum</h2>
       <section id="create">
         <form onSubmit={handleSubmit}>
           <h4>Nom du parfum</h4>
@@ -171,8 +174,8 @@ function CreateParfum() {
             placeholder="https://OneMillion.jpg"
           />
           <button type="submit">Validez</button>
+          {message && <p className="message">{message}</p>}
         </form>
-        {message && <p className="message">{message}</p>}
       </section>
     </>
   );

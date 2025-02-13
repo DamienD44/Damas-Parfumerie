@@ -37,9 +37,12 @@ const router = createBrowserRouter([
     path: "detail/:id",
     element: <ParfumDetail />,
     loader: ({ params }) =>
-      fetch(`http://localhost:3310/api/damasparfum/parfums/${params.id}`),
+      fetch(`http://localhost:3310/api/damasparfum/${params.id}`),
   },
-  { path: "/modify", element: <ModifyParfum /> },
+  {
+    path: "/modify",
+    element: <ModifyParfum />,
+  },
 
   // Try adding a new route! For example, "/about" with an About component
 ]);

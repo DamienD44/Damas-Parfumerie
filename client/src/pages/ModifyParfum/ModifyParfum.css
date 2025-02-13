@@ -48,3 +48,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
+form h4 {
+  color: gold;
+}

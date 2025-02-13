@@ -28,7 +28,10 @@ function ParfumList() {
         </div>
 
         <Link to="/create">
-          <button type="button"> Ajouter votre parfum</button>
+          <button className="button-parfum" type="button">
+            {" "}
+            Ajouter votre parfum
+          </button>
         </Link>
       </section>
       <main id="app">

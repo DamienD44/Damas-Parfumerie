@@ -20,7 +20,7 @@ section div {
   align-items: center;
   text-align: center;
 }
-section button {
+.button-parfum {
   background-color: gold;
   color: white;
   height: 100%;
