@@ -364,3 +364,80 @@ Nous accueillons avec plaisir les contributions ! Veuillez suivre ces étapes po
 - Assurez-vous que votre code respecte les standards de codage en exécutant `npm run check` avant de pousser vos modifications.
 - Ajoutez des tests pour toute nouvelle fonctionnalité ou correction de bug.
 - Documentez clairement vos modifications dans la description de la pull request.
+Damas Parfumerie
+
+Description
+
+Damas Parfumerie est un site recensant divers parfums à but non commercial. Ce projet a été développé en ReactJS avec une API en Node.js et une base de données MySQL.
+
+Fonctionnalités
+
+Consultation des fiches de parfums avec leurs caractéristiques.
+
+Ajout et gestion des favoris.
+
+Authentification avec JWT.
+
+Interface utilisateur dynamique avec React.
+
+Gestion des données via API et base de données MySQL.
+
+Installation
+
+Prérequis
+
+Node.js
+
+MySQL
+
+Un gestionnaire de paquets : npm ou yarn
+
+Étapes
+
+Cloner le dépôt
+
+git clone https://github.com/ton-utilisateur/damas-parfumerie.git
+cd damas-parfumerie
+
+Installer les dépendances
+
+npm install
+# ou avec Yarn
+yarn install
+
+Configurer l'environnement
+
+Dupliquer le fichier .env.example en .env.
+
+Remplir les variables d'environnement nécessaires (DB, JWT_SECRET, etc.).
+
+Démarrer l'application
+
+npm run dev
+
+API
+
+L'API propose plusieurs endpoints pour gérer les parfums, les favoris et l'authentification.
+
+GET /parfums : Récupérer la liste des parfums.
+
+POST /favoris : Ajouter un parfum aux favoris.
+
+DELETE /favoris/:id : Retirer un parfum des favoris.
+
+POST /auth/login : Connexion utilisateur.
+
+Problèmes rencontrés
+
+Problème avec la requête PUT en ReactJS : fonctionne avec client.http mais pas sur le site.
+
+Debugging en cours...
+
+Auteur
+
+Damien
+
+Licence
+
+Projet à but non commercial, sans licence officielle.
+
